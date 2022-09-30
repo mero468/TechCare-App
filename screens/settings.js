@@ -5,8 +5,6 @@ import SpecialText from '../common/SpecialText';
 import SettingItem from '../components/SettingItem';
 import CircleImage from '../common/CircleImage';
 import OverImageButton from '../components/OverImageButton';
-import storage from '../async storage/asyncStorge';
-import { Context } from '../context/context';
 import {useSelector,useDispatch} from 'react-redux';
 import {setUser,setToken,setIsAuthenticated} from '../statemanagement/actions/auth'
 
@@ -78,7 +76,7 @@ const Settings = ({ navigation }) => {
                             weight: 'normal',
                         }}
                     />
-                    <SettingItem
+                    {/* <SettingItem
                         icon={{
                             name: 'remove-red-eye',
                             size: 28,
@@ -91,7 +89,7 @@ const Settings = ({ navigation }) => {
                             color: colors.main_color,
                             weight: 'normal',
                         }}
-                    />
+                    /> */}
                     <SettingItem
                         icon={{
                             name: 'shield',

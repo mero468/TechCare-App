@@ -5,23 +5,19 @@ import Splash_screen from './screens/auth_screens/splash_screen';
 import Login_screen from './screens/auth_screens/login_screen';
 import Signup_screen from './screens/auth_screens/signup_screen';
 import Home_screen from './screens/Home/home_screen';
-import { Context, Provider } from './context/context';
-import LabResults from './screens/sections/lab_results';
+import LabResults from './screens/lab/lab_results';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Notifications from './screens/notifications';
 import Settings from './screens/settings';
 import { colors } from './common/colors';
-import SectionHeader from './common/SectionHeader';
-import ResultScreen from './screens/sections/result_screen';
+import ResultScreen from './screens/lab/result_screen';
 import ProfileScreen from './screens/profile_screens/profile_screens';
-import { InAppNotificationProvider } from 'react-native-in-app-notification';
 import InitialProfile from './screens/profile_screens/initial_profile_info';
 import WellnessSpace from './screens/wellness-space/wellness_space';
-import TestingKits from './screens/testing-kits/testing_kits';
+import TestingKits from './screens/packages-result/packages_list';
 import CartScreen from './screens/cart/cart_screen';
-import { CartContext } from './context/cart_context';
 import { Icon } from 'react-native-elements';
-
+import ResultCard from './components/ResultCard';
 
 
 
@@ -61,22 +57,14 @@ const Home = () => {
         header: () => null,
       }} />
       <HomeStack.Screen name='lab_results' component={LabResults} options={{
-        // headerTitle: 'Lab Result',
-        // headerTintColor: colors.main_color,
-        // headerStyle: {
-        //   backgroundColor: '#fff',
-        //   borderBottomWidth: 0,
-        //   elevation: 0,
-        //   padding: 10,
-        // },
         header: () => null,
       }}
       />
       <HomeStack.Screen name='result' component={ResultScreen}
         options={({ route }) => ({
-          headerTintColor: colors.main_color,
-          headerTitle: route.params.created_at.slice(0, 10),
+          header: () => null
         })} />
+
       <HomeStack.Screen name='WellnessSpace' component={WellnessSpace}
         options={({ route }) => ({
           header: () => null
@@ -116,19 +104,7 @@ const Stack = createNativeStackNavigator();
 
 const BottomNav = () => {
 
-  const { cartItems } = useContext(CartContext);
-  const [numberOfItems, setNumberOfItems] = useState(0)
 
-
-  useEffect(() => {
-    if (cartItems.length > 1) {
-      setNumberOfItems(cartItems.reduce((prev = 0, current = 0) => prev.quantity + current.quantity))
-    } else if (cartItems.length === 1) {
-      setNumberOfItems(cartItems[0].quantity)
-    } else if (cartItems.length === 0) {
-      setNumberOfItems(0)
-    }
-  }, [cartItems])
 
   return (
     <BottomTab.Navigator
@@ -165,7 +141,6 @@ const BottomNav = () => {
       <BottomTab.Screen name="Home" component={Home} />
       <BottomTab.Screen name="Notifications" component={Notifications} options={{ tabBarBadge: 3, tabBarBadgeStyle: { backgroundColor: 'red', color: '#fff' } }} />
       <BottomTab.Screen name="Cart" component={CartScreen} options={{
-        tabBarBadge: numberOfItems > 0 ? numberOfItems : null,
         tabBarBadgeStyle: {
           backgroundColor: 'red',
           color: '#fff'
@@ -178,7 +153,6 @@ const BottomNav = () => {
 
 
 const AppRoutes = (params) => {
-  const { user, isAuthenticated } = useContext(Context)
 
   return (
 

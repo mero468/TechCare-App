@@ -9,12 +9,8 @@ import CustomNavHeader from '../../components/CustomNavHeader';
 import { BottomSheet, Card, Button, Icon, ListItem } from 'react-native-elements';
 import SpecialText from '../../common/SpecialText';
 import CartItem from '../../components/CartItem';
-import { CartContext } from '../../context/cart_context';
 import RBSheet from "react-native-raw-bottom-sheet";
 import CustomButton from '../../common/CutomButton';
-import InCartInvoice from '../../components/InCartInvoice';
-import MultiStepsForm from '../../components/MultiStepsForm';
-import storage from '../../async storage/asyncStorge';
 
 
 

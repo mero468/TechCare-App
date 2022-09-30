@@ -8,12 +8,10 @@ import { colors } from '../../common/colors';
 const Splash_screen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
-            <SpecialText text='Welcome to' size={22} weight='bold' color={colors.main_color} />
-            <SpecialText text='TechCare' size={38} weight='bold' color={colors.main_color} />
-            <Image source={require('../../assets/images/splash_img.png')} style={{ marginVertical: 20 }} />
+            <Image source={require('../../assets/images/techare-logo.png')} style={styles.image} />
+            <Image source={require('../../assets/images/splash_img_2.png')} style={{  }} />
             <View style={styles.btnContainer}>
-                <CustomButton text='Sign Up' size='lg' backgroundColor={colors.main_color} style={{ marginVertical: 10 }} action={() => navigation.navigate('signup')} />
-                <CustomButton text='Login' size='lg' backgroundColor='#fff' style={{ marginVertical: 5 }} action={() => navigation.navigate('login2')} />
+                <CustomButton text='Login' size='lg' backgroundColor={colors.main_color} style={{ margin:10}} action={() => navigation.navigate('login')} />
             </View>
         </SafeAreaView>
     )
@@ -33,5 +31,11 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly'
+    },
+    image: {
+        resizeMode: "contain",
+        width:200,
+        height:100,
+        alignSelf:"center"
     }
 })

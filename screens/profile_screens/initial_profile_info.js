@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect, useLayoutEffect } from 'react'
 import { StyleSheet, Text, View, KeyboardAvoidingView, Pressable, ScrollView } from 'react-native'
-import { Context } from '../../context/context'
 import { Input, CheckBox, Button } from 'react-native-elements';
 import CountryPicker from 'react-native-country-picker-modal'
 import { CountryCode, Country } from './src/types'
@@ -12,7 +11,6 @@ import { domain } from '../../api_info';
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 const InitialProfile = ({ navigation, route }) => {
-    const { setIsAuthenticated } = useContext(Context)
     const { token } = route.params
 
     const [firstName, setFirstName] = useState('')

@@ -1,21 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import { StyleSheet, Text, View, Image, KeyboardAvoidingView, ScrollView, SafeAreaView } from 'react-native'
 import CustomButton from '../../common/CutomButton';
-import SpecialText from '../../common/SpecialText';
 import { colors } from '../../common/colors';
 import CustomTextInput from '../../common/CustomTextInput';
 import PressableText from '../../common/PressableText';
-import { Context } from '../../context/context';
 import { domain } from '../../api_info';
-import storage from '../../async storage/asyncStorge';
 import { showMessage} from "react-native-flash-message";
-import {useSelector,useDispatch} from 'react-redux';
-import {setUser,setToken,setIsAuthenticated} from '../../statemanagement/actions/auth'
+import {useDispatch} from 'react-redux';
+import {setUser,setToken,setUsername_auth} from '../../statemanagement/actions/auth'
 
 
-const Login_test = ({ navigation }) => {
-    // const { setUser, setIsAuthenticated, setToken } = useContext(Context);
-    const {user,token,authenticated} = useSelector(state => state.loginReducer);
+const Login = ({ navigation }) => {
     const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -74,26 +69,8 @@ const Login_test = ({ navigation }) => {
                 .then(result => {
                     const { token, user_id, user_info, is_patient, is_correct } = result;
                     dispatch(setUser(result));
-                    console.log(result);
-                    dispatch(setUser(result));
-                    console.log(result.token);
                     dispatch(setToken(result.token));
-                    try {
-                        storage.save({
-                            key: 'user', // Note: Do not use underscore("_") in key!
-                            data: {
-                                token: token,
-                                userid: user_id,
-                                username: user_info,
-                                is_patient: is_patient
-                            },
-                            expires: null
-                        });
-                        if (is_correct)
-                            dispatch(setIsAuthenticated(true));
-                    } catch (e) {
-                        console.log('error: save user info using async storge', e)
-                    }
+                    dispatch(setUsername_auth(username));
                     return is_correct;
                 }).then((correct) => { if (correct) {
                     navigation.navigate('Main');
@@ -108,31 +85,31 @@ const Login_test = ({ navigation }) => {
             <KeyboardAvoidingView behavior='position'>
                 <View style={styles.container}>
                     <View >
-                        <Image source={require('../../assets/images/splash_img.png')} style={{ height: 320, width: 250 }} />
+                        <Image source={require('../../assets/images/login.png')} style={{ height: 320, width: 250 }} />
                     </View>
                     <View style={[styles.inputContainer, styles.btnContainer]}>
                         <CustomTextInput placeholder='Email' type='email-address' char={username} style={{ marginVertical: 5 }} setValue={setUsername} />
                         <CustomTextInput placeholder='Password' style={{ marginVertical: 5 }} char={password} is_password={true} setValue={setPassword} />
-                        <View style={styles.pressableTextContainer}>
+                        {/* <View style={styles.pressableTextContainer}>
                             <PressableText text='Forgot Password?' size={13} />
-                        </View>
+                        </View> */}
                     </View>
                     <View style={styles.btnContainer}>
                         <CustomButton text='Login' size='lg' backgroundColor={colors.main_color} style={{ marginVertical: 5 }} action={() => {
                             loginUser();
                         }} />
                     </View>
-                    <View style={{ flexDirection: 'row', marginVertical: 10 }}>
+                    {/* <View style={{ flexDirection: 'row', marginVertical: 10 }}>
                         <Text>Dont't have an account?</Text>
                         <PressableText text=' Sign Up' size={14} action={() => navigation.navigate('signup')} />
-                    </View>
+                    </View> */}
                 </View>
             </KeyboardAvoidingView>
         </ScrollView>
     )
 }
 
-export default Login_test
+export default Login
 
 const styles = StyleSheet.create({
     container: {

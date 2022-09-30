@@ -19,7 +19,7 @@ const CustomTextInput = ({ char,placeholder, type = 'default', style, is_passwor
                 value={text}
                 placeholder={placeholder}
                 keyboardType={type}
-                placeholderTextColor='#7B6BA8'
+                placeholderTextColor='#4AAAE7'
                 secureTextEntry={hide ? true : false}
                 color={colors.main_color}
                 editable={disabled}

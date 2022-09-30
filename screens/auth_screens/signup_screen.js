@@ -7,8 +7,6 @@ import CustomTextInput from '../../common/CustomTextInput';
 import PressableText from '../../common/PressableText';
 import { Input, Icon } from 'react-native-elements';
 import { domain } from '../../api_info';
-import storage, { getDataFromAsyncStorage } from '../../async storage/asyncStorge';
-import { Context } from '../../context/context';
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 

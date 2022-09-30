@@ -13,8 +13,9 @@ const SectionHeader = ({ label, img }) => {
     return (
         <View style={styles.container} >
             <View style={styles.content_container}>
-                <SpecialText text={label} size={24} weight='bold' color={colors.main_color} style={{ marginRight: 25, width: 120, flexWrap: 'wrap' }} />
                 <Image source={img} style={styles.image} />
+                <SpecialText text={label} size={18} weight='bold' color={colors.main_color} style={{  flexWrap: 'wrap' }} />
+
             </View>
         </View>
     )
@@ -26,26 +27,24 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
         alignItems: 'center',
-        marginBottom: 5,
         marginHorizontal: 20,
-        width: '93%',
+        width: '100%',
+        backgroundColor: "#FFF",
     },
     content_container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        flexDirection: 'column',
+        alignSelf:"stretch",
+        alignItems:'center',
         paddingLeft: 18,
         paddingRight: 15,
-        paddingVertical: 5,
-        marginVertical: 5,
         backgroundColor: colors.light_main_color,
         borderRadius: 10,
         width: '100%',
-        paddingVertical: 1
-
     },
     image: {
-        flex: 1,
-        resizeMode: 'contain',
+        resizeMode: "contain",
+        width:200,
+        height:100,
+        alignSelf:"center"
     }
 })

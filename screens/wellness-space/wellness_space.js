@@ -3,7 +3,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import SectionHeader from '../../common/SectionHeader';
 import { colors } from '../../common/colors';
 import { showMessage, hideMessage } from 'react-native-flash-message';
-import { Context } from '../../context/context';
 import CustomCard from '../../components/CustomCard';
 import CustomNavHeader from '../../components/CustomNavHeader';
 import DatePicker from 'react-native-date-picker';
@@ -18,7 +17,6 @@ const sc_width = Dimensions.get('screen').width;
 
 const WellnessSpace = ({ navigation }) => {
 
-    const { token, user } = useContext(Context);
     const [modalVisible, setModalVisible] = useState(false);
 
     const [DATA, setDATA] = useState([])

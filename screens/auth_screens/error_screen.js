@@ -8,7 +8,7 @@ import SpecialText from '../../common/SpecialText'
 const Error_screen = () => {
     return (
         <View style={styles.container}>
-            <Image source={require('../../assets/images/splash_img.png')} style={{
+            <Image source={require('../../assets/images/splash_img.jpg')} style={{
                 marginVertical: 30, width: 250,
                 height: 280
             }} />
